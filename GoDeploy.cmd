@@ -52,7 +52,7 @@ echo --------------------------------------------
 echo GOROOT: %GOROOT%
 echo GOPATH: %GOPATH%
 echo --------------------------------------------
-%GOEXE% get -u
-%GOEXE% build gotry.go
+%GOEXE% get -u > log.txt
+%GOEXE% build gotry.go > log.txt
 
 echo DONE!
