@@ -14,40 +14,37 @@ SET GOPATH=%WEBROOT_PATH%\gopath
 SET GOEXE=%GOROOT%\bin\go.exe
 SET FOLDERNAME=azureapp
 SET GOAZUREAPP=%WEBROOT_PATH%\gopath\src\%FOLDERNAME%
-SET extract=false
+
+IF EXIST %GOPATH% (
+    ECHO %GOPATH% already exist
+    
+    ECHO Removing %GOAZUREAPP%
+    RMDIR /S /Q %GOAZUREAPP%
+) else (
+    ECHO creating %GOPATH%\bin
+    MKDIR "%GOPATH%\bin"
+    ECHO creating %GOPATH%\pkg
+    MKDIR "%GOPATH%\pkg"
+    ECHO creating %GOPATH%\src
+    MKDIR "%GOPATH%\src"
+)
+
+ECHO creating %GOAZUREAPP%
+    MKDIR %GOAZUREAPP%
 
 IF EXIST %GOROOT% (
     ECHO %GOROOT% already exist
 ) else (
     ECHO creating %GOROOT%
-    mkdir %GOROOT% 
-    set extract=true
-)
-
-IF EXIST %GOPATH% (
-    ECHO %GOPATH% already exist
-) else (
-    ECHO creating %GOPATH%\bin
-    mkdir "%GOPATH%\bin"
-    ECHO creating %GOPATH%\pkg
-    mkdir "%GOPATH%\pkg"
-    ECHO creating %GOPATH%\src
-    mkdir "%GOPATH%\src"
-    ECHO creating %GOAZUREAPP%
-    mkdir %GOAZUREAPP%
-    set extract=true
-)
-
-if %extract% == true (
+    MKDIR %GOROOT% 
     GOTO :EXTRACT
-) else (
-    GOTO :BUILD
 )
 
+GOTO :BUILD
 
 :EXTRACT
 ECHO extracting go.zip to %WEBROOT_PATH%
-unzip go.zip -d %WEBROOT_PATH%
+UNZIP go.zip -d %WEBROOT_PATH%
 
 GOTO :BUILD
 
