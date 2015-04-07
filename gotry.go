@@ -31,7 +31,7 @@ func main() {
                 <br />
                 <a href='/g'>Try Gin</a>
                 <br />
-                <a href='/m'>Try Martini bla</a>
+                <a href='/m'>Try Martini</a>
                 <br />
                 <pre>`)
      
