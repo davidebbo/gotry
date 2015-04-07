@@ -16,11 +16,11 @@ func main() {
     logFile := "testlogfile"
     port := "3001"
     if os.Getenv("HTTP_PLATFORM_PORT") != "" {
-        // logFile = "D:\\home\\site\\wwwroot\\testlogfile"
+        logFile = "D:\\home\\site\\wwwroot\\testlogfile"
         port = os.Getenv("HTTP_PLATFORM_PORT")
     }
 
-     f, err := os.OpenFile(logFile, os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
+    f, err := os.OpenFile(logFile, os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
            
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
         // fmt.Fprintf(w, "Hello form Go! Error: %v", err)
