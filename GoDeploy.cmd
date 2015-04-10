@@ -9,9 +9,9 @@ ECHO set WEBROOT_PATH to D:\home\site\wwwroot
 SET WEBROOT_PATH=D:\home\site\wwwroot
 
 :SETUP
-SET GOROOT=%WEBROOT_PATH%\go
+SET GOROOT=D:\Program Files\go\1.4.2
 SET GOPATH=%WEBROOT_PATH%\gopath
-SET GOEXE=%GOROOT%\bin\go.exe
+SET GOEXE="%GOROOT%\bin\go.exe"
 SET FOLDERNAME=azureapp
 SET GOAZUREAPP=%WEBROOT_PATH%\gopath\src\%FOLDERNAME%
 
@@ -30,34 +30,16 @@ IF EXIST %GOPATH% (
 )
 
 ECHO creating %GOAZUREAPP%
-    MKDIR %GOAZUREAPP%
+MKDIR %GOAZUREAPP%
 
-IF EXIST %GOROOT% (
-    ECHO %GOROOT% already exist
-) else (
-    ECHO creating %GOROOT%
-    MKDIR %GOROOT% 
-    GOTO :EXTRACT
-)
-
-GOTO :BUILD
-
-:EXTRACT
-ECHO extracting go.zip to %WEBROOT_PATH%
-UNZIP go.zip -d %WEBROOT_PATH%
-
-GOTO :BUILD
-
-:BUILD
 ECHO --------------------------------------------
 ECHO GOROOT: %GOROOT%
-ECHO GOPATH: %GOPATH%
 ECHO GOEXE: %GOEXE%
+ECHO GOPATH: %GOPATH%
 ECHO GOAZUREAPP: %GOAZUREAPP%
 ECHO --------------------------------------------
 ECHO copying sourc code to %GOAZUREAPP%
 CP gotry.go %GOAZUREAPP%
-CP Web.config %WEBROOT_PATH%
 
 ECHO Resolving dependencies
 CD "%GOPATH%\src"
